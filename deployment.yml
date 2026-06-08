@@ -1,1 +1,21 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mavenwebappdeployment
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mavenwebapp
+  template:
+    metadata:
+      labels:
+        app: mavenwebapp
+    spec:
+      containers:
+      - name: mavenwebappcontainer
+        image: ashokit/mavenwebapp:v3
+        ports:
+        - containerPort: 8080
